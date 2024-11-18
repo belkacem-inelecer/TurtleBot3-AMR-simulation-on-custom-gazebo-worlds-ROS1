@@ -132,6 +132,8 @@ Place the updated file in the `turtlebot3_custom_launch/config/` directory.
 
 ### Occupancy Grid Map
 ![Occupancy Grid Map](https://github.com/belkacem-inelecer/TurtleBot3-AMR-simulation-on-custom-gazebo-worlds-ROS1/blob/main/project_garage/occluded_willowgarage_map.pgm)
+![Occupancy Grid Map](https://github.com/user-attachments/assets/103d4272-6b33-4c98-8a23-4dcf288f5116)
+
 
 ### Video Demonstration
 Watch the full simulation here: [**Video Link**](video/demo.mp4)
