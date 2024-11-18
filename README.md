@@ -138,17 +138,6 @@ Watch the full simulation here: [**Video Link**](video/demo.mp4)
 
 ---
 
-## Troubleshooting
-
-### Common Issues and Fixes
-
-#### 1. `cv2.imshow` Error
-If you're running the simulation on a headless server, install OpenCV Headless:
-
-```bash
-pip uninstall opencv-python
-pip install opencv-python-headless
-```
 
 #### 2. Map Not Saving
 Ensure the `map_saver` node is running correctly:
