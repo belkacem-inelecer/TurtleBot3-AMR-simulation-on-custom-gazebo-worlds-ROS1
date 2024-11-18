@@ -129,6 +129,7 @@ Place the updated file in the `turtlebot3_custom_launch/config/` directory.
 
 ### Mapping in RViz
 ![Mapping in RViz](images/rviz_mapping.png)
+![Mapping in RViz](https://github.com/user-attachments/assets/80c98d5c-02fc-4655-ae3a-dcfdd86ed93c)
 
 ### Occupancy Grid Map
 ![Occupancy Grid Map](https://github.com/belkacem-inelecer/TurtleBot3-AMR-simulation-on-custom-gazebo-worlds-ROS1/blob/main/project_garage/occluded_willowgarage_map.pgm)
