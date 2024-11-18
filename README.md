@@ -125,10 +125,9 @@ Place the updated file in the `turtlebot3_custom_launch/config/` directory.
 ## Visual Demonstrations
 
 ### Gazebo Simulation
-![Gazebo Simulation](images/gazebo_simulation.png)
+![Gazebo Simulation](https://github.com/user-attachments/assets/04f53bf4-bb1e-451e-864e-7a87a6d81f0d)
 
 ### Mapping in RViz
-![Mapping in RViz](images/rviz_mapping.png)
 ![Mapping in RViz](https://github.com/user-attachments/assets/80c98d5c-02fc-4655-ae3a-dcfdd86ed93c)
 
 ### Occupancy Grid Map
