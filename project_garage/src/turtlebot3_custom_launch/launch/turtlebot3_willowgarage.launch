@@ -1,0 +1,17 @@
+<launch>
+    <arg name="model" default="burger"/>  <!-- Specify the TurtleBot3 model -->
+
+    <!-- Use simulation time -->
+    <param name="use_sim_time" value="true" />
+
+    <!-- Start Gazebo with the Willow Garage world -->
+    <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="/usr/share/gazebo-11/worlds/willowgarage.world" respawn="false" output="screen"/>
+    <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen"/>
+
+    <!-- Load TurtleBot3 URDF into the parameter server -->
+    <param name="robot_description" command="$(find xacro)/xacro '$(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro'" />
+
+    <!-- Spawn the TurtleBot3 model in Gazebo -->
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen" args="-urdf -model turtlebot3 -param robot_description"/>
+</launch>
+

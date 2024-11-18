@@ -1,0 +1,23 @@
+<launch>
+    <!-- Set TurtleBot3 model -->
+    <arg name="model" default="burger"/>
+    
+    <!-- Use simulation time globally -->
+    <param name="use_sim_time" value="true"/>
+
+    <!-- Launch Gazebo with Willow Garage World -->
+    <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="/usr/share/gazebo-11/worlds/willowgarage.world" respawn="false" output="screen"/>
+    <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen"/>
+
+    <!-- Load TurtleBot3 URDF into the parameter server -->
+    <param name="robot_description" command="$(find xacro)/xacro '$(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro'"/>
+
+    <!-- Spawn the TurtleBot3 model in Gazebo -->
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen" args="-urdf -model turtlebot3 -param robot_description"/>
+
+    <!-- Start SLAM Toolbox in online sync mode for mapping -->
+    <include file="/opt/ros/noetic/share/slam_toolbox/online_sync.launch"/>
+
+    <!-- Start RViz with a basic mapping configuration -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find slam_toolbox)/config/mapper.rviz" required="true"/>
+</launch>

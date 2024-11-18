@@ -1,0 +1,8 @@
+prefix=/home/hedi/Desktop/process_LiDAR_data/project_garage/devel
+
+Name: turtlebot3_custom_launch
+Description: Description of turtlebot3_custom_launch
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
