@@ -215,6 +215,11 @@ Map for turtlebot3_slam_data saved successfully in /home/user/maps.
 
 ## How to Modify an Existing `.PGM` Map (OCCLUSION)
 
+### Video Demonstration
+Watch the full simulation here: [**Video Link**](https://youtu.be/8M5yjMeaYgs)
+
+![MODIFIED .PGM & Rviz display](https://github.com/user-attachments/assets/6540f13a-12a2-4e99-8fb0-bb38b8713b34)
+
 ### Step 1: Use the Modification Script
 To edit an existing map, use the `modify_map.py` script. Ensure the script is executable:
 
