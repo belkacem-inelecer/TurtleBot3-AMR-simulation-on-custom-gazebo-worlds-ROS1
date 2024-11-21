@@ -155,9 +155,129 @@ Verify the URDF and SLAM parameters are updated, and relaunch the simulation.
 
 ---
 
-## Future Work
+## How to Generate a `.PGM` and `.YAML` Submap from a `.BAG` File
 
-- Integrate advanced SLAM algorithms like **Cartographer** or **Hector SLAM**.
-- Automate the teleoperation using the ROS navigation stack.
-- Enhance map accuracy with additional sensor fusion techniques.
+### Step 1: Use the Extraction Script
+Make the `extract_maps.sh` script executable:
 
+```bash
+chmod +x extract_maps.sh
+```
+
+Run the script:
+
+```bash
+./extract_maps.sh
+```
+
+### Step 2: Interactive Prompts
+You’ll be asked to input:
+1. The path to the `.bag` file containing SLAM data.
+2. The directory where the extracted map files should be saved.
+
+Example:
+
+```bash
+Enter the full path to the BAG file (e.g., /home/user/maps/turtlebot3_slam_data.bag): /home/user/maps/turtlebot3_slam_data.bag
+Enter the full path to the output directory (e.g., /home/user/maps): /home/user/maps
+```
+
+### Step 3: Script Process
+The script will:
+1. Launch a SLAM node to process the bag file.
+2. Play back the bag file to generate mapping data.
+3. Save the map as `.pgm` and `.yaml` files in the specified directory.
+
+### Step 4: Verify the Output
+After the script completes, check the output directory for the generated files. For example:
+
+```bash
+turtlebot3_slam_data.pgm
+turtlebot3_slam_data.yaml
+```
+
+---
+
+### Example Run
+```bash
+$ ./extract_maps.sh
+Enter the full path to the BAG file (e.g., /home/user/maps/turtlebot3_slam_data.bag): /home/user/maps/turtlebot3_slam_data.bag
+Enter the full path to the output directory (e.g., /home/user/maps): /home/user/maps
+
+Launching SLAM node...
+Playing bag file: /home/user/maps/turtlebot3_slam_data.bag...
+Bag file playback completed.
+Saving map for turtlebot3_slam_data...
+Shutting down SLAM node...
+Map for turtlebot3_slam_data saved successfully in /home/user/maps.
+```
+---
+
+## How to Modify an Existing `.PGM` Map (OCCLUSION)
+
+### Step 1: Use the Modification Script
+To edit an existing map, use the `modify_map.py` script. Ensure the script is executable:
+
+```bash
+chmod +x modify_map.py
+```
+
+Run the script in a terminal:
+
+```bash
+python3 modify_map.py
+```
+
+### Step 2: Input File Paths
+The script will prompt you to enter:
+1. The path to the `.pgm` map you want to modify.
+2. The output directory to save the modified map.
+
+Example:
+
+```bash
+Enter the path to the .pgm file you want to modify: /home/user/maps/map.pgm
+Enter the directory where you want to save the results: /home/user/maps/modified/
+```
+
+### Step 3: Modify the Map
+An OpenCV window named **"Map Editor"** will open. Use the following controls:
+- **`t`**: Select Rectangle Tool. Draw rectangles by left-clicking and dragging.
+- **`c`**: Select Circle Tool. Add circular obstacles.
+- **`o`**: Select Occlusion Tool. Click to add random occlusions.
+- **`r`**: Reset the map to its original state.
+- **`s`**: Save the modified map.
+- **`q`**: Quit the editor.
+
+### Step 4: Save the Map
+When you save the map, the modified `.pgm` file and its corresponding `.yaml` file will be saved in the specified directory with names like:
+
+```bash
+map_modified_1.pgm
+map_modified_1.yaml
+```
+
+### Step 5: Visualize the Modified Map
+To visualize the map in RViz:
+1. Run `roscore` to start the ROS core:
+    ```bash
+    roscore
+    ```
+2. Use `map_server` to serve the modified map:
+    ```bash
+    rosrun map_server map_server /home/user/maps/modified/map_modified_1.yaml
+    ```
+3. Launch RViz in another terminal:
+    ```bash
+    rosrun rviz rviz
+    ```
+4. Add the `/map` topic in RViz to view the map.
+
+---
+
+
+
+### Troubleshooting
+- Ensure the `.bag` file contains relevant topics such as `/scan`, `/tf`, `/odom`, and `/map`.
+- Verify the output directory has write permissions.
+- If the map is not saved, check the completeness of the `.bag` file data.
